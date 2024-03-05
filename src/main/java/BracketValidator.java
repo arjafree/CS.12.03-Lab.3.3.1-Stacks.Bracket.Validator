@@ -6,19 +6,56 @@ public class BracketValidator {
     public static boolean checkValidParentheses(String expression) {
 
         // Obtain an array of the brackets (each element is a single bracket).
-
+        String[] chars = expression.split("");
         // Create a stack.
+        Stack stack = new Stack();
+
+
 
         // Iterate over the array of brackets.
+        for(int i =0;i<chars.length; i++){
+            String reverse = "";
+            if(chars[i].equals("(")||chars[i].equals("[")||chars[i].equals("{")){
+                stack.push(chars[i]);
+            }
 
-            // Obtain the reversed version of bracket.
+            else{
+                if(stack.isEmpty()){
+                    return false;
+                }
+                else{
+                    if(!stack.pop().equals(reverse(chars[i]))){
+                        return false;
+                    }
+                }
 
-            // Check if the bracket is an opening bracket. If it is, push it onto the stack.
+            }
 
-            // If the stack is empty or if the popped bracket is not equal to the reverse bracket of the current bracket, return false as this must mean that the expression is invalid.
+        }
 
-        // If the stack is empty after we have finished iterating over the array of brackets, then return true as this must mean that the expression is valid. If the stack is not empty, this must mean that the expression is invalid.
-        return false;
+        return true;
+
+    }
+    public static String reverse(String s){
+        if(s.equals(")")){
+            return "(";
+        }
+        if(s.equals("(")){
+            return ")";
+        }
+        if(s.equals("[")){
+            return "]";
+        }
+        if(s.equals("]")){
+            return "[";
+        }
+        if(s.equals("{")){
+            return "}";
+        }
+        if(s.equals("}")){
+            return "{";
+        }
+        return "";
 
     }
 
